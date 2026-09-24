@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Alexandre Kubicki, Professeur des Universités (CNU 91), kinésithérapeute. Contrôle moteur, équilibre, rééducation gériatrique, émotion et contrôle moteur.">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<!-- STATISTIQUES : le code de l'outil de mesure d'audience sera collé ici -->
+<title>Alexandre Kubicki</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F3F6F5; --surface:#FFFFFF; --ink:#13272B; --muted:#56696C; --line:#D5DEDC;
+  --accent:#1D6F6A; --accent-soft:#E0EEEC; --trace:#B7791F; --grid:#E3EAE8; --ecg:#A33F5A;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0F1A1C; --surface:#152427; --ink:#E3ECEA; --muted:#9BB0AE; --line:#27393C;
+    --accent:#5FC0B5; --accent-soft:#1B3436; --trace:#E0A94A; --grid:#1E3033; --ecg:#E88AA3;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0F1A1C; --surface:#152427; --ink:#E3ECEA; --muted:#9BB0AE; --line:#27393C;
+  --accent:#5FC0B5; --accent-soft:#1B3436; --trace:#E0A94A; --grid:#1E3033; --ecg:#E88AA3;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;padding-inline:20px}
+.wrap{max-width:1080px;margin:0 auto}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+h1,h2,h3{font-family:var(--serif);text-wrap:balance;line-height:1.2;margin:0}
+p{margin:0}
+.mono{font-family:var(--mono)}
+
+/* language switch */
+.site[data-lang="fr"] [lang="en"]{display:none!important}
+.site[data-lang="en"] [lang="fr"]{display:none!important}
+
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.brand{font-family:var(--serif);font-weight:600;font-size:18px}
+nav.menu{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
+nav.menu a{color:var(--muted);text-decoration:none}
+nav.menu a:hover{color:var(--ink)}
+.langs{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.langs button{font:500 13px var(--mono);background:transparent;color:var(--muted);border:0;padding:5px 12px;cursor:pointer}
+.langs button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center;padding-block:56px 40px}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-size:clamp(38px,5.4vw,60px);font-weight:700;letter-spacing:-.01em}
+.idline{display:flex;align-items:center;gap:22px;margin-top:14px}
+.portrait{width:112px;height:112px;border-radius:50%;object-fit:cover;flex:none;border:3px solid var(--surface);box-shadow:0 0 0 1px var(--line)}
+@media (max-width:480px){.portrait{width:80px;height:80px}.idline{gap:14px}}
+.role{font-size:18px;color:var(--muted);margin-top:12px}
+.thesis{font-family:var(--serif);font-size:19px;line-height:1.55;margin-top:24px;max-width:36em;display:grid;gap:10px}
+.thesis span{display:block}
+.affil{margin-top:22px;font-size:14px;color:var(--muted);display:grid;gap:2px}
+.cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{display:inline-block;padding:10px 18px;border-radius:6px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--bg)}
+.btn.ghost{color:var(--accent)}
+
+.plate{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}
+.plate canvas{width:100%;aspect-ratio:600/640;display:block;max-width:100%}
+.plate figcaption{font:12px/1.5 var(--mono);color:var(--muted);margin-top:10px}
+
+.facts{display:flex;flex-wrap:wrap;gap:12px 36px;padding-block:22px;border-block:1px solid var(--line);font-variant-numeric:tabular-nums}
+.fact b{font:600 26px var(--serif);display:block;line-height:1.1}
+.fact span{font-size:13px;color:var(--muted)}
+
+section{padding-block:64px 8px}
+.sec-head{display:grid;grid-template-columns:220px 1fr;gap:32px;margin-bottom:28px}
+.sec-head h2{font-size:32px}
+.sec-head p{color:var(--muted);max-width:40em}
+
+.axes{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line)}
+.axis{padding:24px 24px 24px 0;border-bottom:1px solid var(--line)}
+.axis:nth-child(odd){border-right:1px solid var(--line)}
+.axis:nth-child(even){padding-left:24px}
+.axis h3{font-size:20px;margin-bottom:8px}
+.axis p{color:var(--muted);font-size:15px}
+.axis .ref{font:12px var(--mono);color:var(--accent);margin-top:10px;display:block}
+
+.collab{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px}
+.card .who{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--trace)}
+.card h3{font-size:20px;margin:6px 0 10px}
+.card ul{margin:0;padding-left:18px;color:var(--muted);font-size:15px;display:grid;gap:4px}
+
+.methods{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:13px var(--mono);border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px}
+
+.projects{display:grid;gap:0;border-top:1px solid var(--line)}
+.proj{display:grid;grid-template-columns:220px 1fr;gap:32px;padding-block:20px;border-bottom:1px solid var(--line)}
+.proj .tag{font:500 13px var(--mono);color:var(--accent)}
+.proj h3{font-size:19px;margin-bottom:6px}
+.proj p{color:var(--muted);font-size:15px;max-width:44em}
+
+.pub-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.pub-tools input{flex:1 1 240px;font:15px var(--sans);padding:9px 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)}
+.filter{font:13px var(--mono);border:1px solid var(--line);background:transparent;color:var(--muted);padding:7px 12px;border-radius:999px;cursor:pointer}
+.filter[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.pubs{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.pubs li{display:grid;grid-template-columns:64px 1fr;gap:16px;padding-block:14px;border-bottom:1px solid var(--line)}
+.pubs .yr{font:500 14px var(--mono);color:var(--accent);font-variant-numeric:tabular-nums;padding-top:2px}
+.pubs .t{font-family:var(--serif);font-size:17px;font-weight:600;line-height:1.35}
+.pubs .a{font-size:14px;color:var(--muted);margin-top:3px}
+.pubs .a b{color:var(--ink);font-weight:600}
+.pubs .j{font-size:14px;margin-top:2px}
+.pubs .j i{color:var(--ink)}
+.pubs .lk{font:12px var(--mono);margin-left:8px}
+.pub-count{font:13px var(--mono);color:var(--muted);margin-top:12px}
+
+.talks{display:grid;grid-template-columns:repeat(2,1fr);gap:0 32px}
+.talk{padding-block:12px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:64px 1fr;gap:16px;font-size:15px}
+.talk .yr{font:500 14px var(--mono);color:var(--accent)}
+.talk small{display:block;color:var(--muted);font-size:13px}
+
+.teach{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.teach p{color:var(--muted);max-width:40em}
+
+.contact{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.contact h2{font-size:30px}
+.contact p{color:var(--muted);margin-top:10px}
+.clist{display:grid;gap:14px}
+.crow{display:grid;gap:2px}
+.crow .k{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.crow .v{font-size:16px;word-break:break-word}
+.copy{font:12px var(--mono);margin-left:8px;border:1px solid var(--line);background:transparent;color:var(--accent);border-radius:4px;padding:2px 8px;cursor:pointer}
+
+footer{padding-block:40px;color:var(--muted);font-size:13px;display:grid;gap:6px}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;gap:32px;padding-block:36px 28px}
+  .plate{max-width:420px}
+  .sec-head,.proj,.teach,.contact{grid-template-columns:1fr;gap:12px}
+  .axes,.collab,.talks{grid-template-columns:1fr}
+  .axis,.axis:nth-child(even){padding:20px 0;border-right:0}
+  nav.menu{display:none}
+  .contact{padding:22px}
+}
+@media (max-width:480px){
+  .pubs li,.talk{grid-template-columns:1fr;gap:4px}
+}
+</style>
+
+</head>
+<body>
+<div class="site" id="site" data-lang="fr">
+<div class="wrap">
+
+<header class="top">
+  <div class="brand">Alexandre Kubicki</div>
+  <nav class="menu" aria-label="Sections">
+    <a href="#expertise"><span lang="fr">Expertise</span><span lang="en">Expertise</span></a>
+    <a href="#collaborer"><span lang="fr">Collaborer</span><span lang="en">Work with me</span></a>
+    <a href="#publications">Publications</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="langs" role="group" aria-label="Langue / Language">
+    <button type="button" id="btn-fr" data-set="fr" aria-pressed="true">FR</button>
+    <button type="button" id="btn-en" data-set="en" aria-pressed="false">EN</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div>
+    <div class="eyebrow"><span lang="fr">Sciences de la rééducation · CNU 91</span><span lang="en">Rehabilitation sciences</span></div>
+    <div class="idline">
+      <img class="portrait" src="data:image/jpeg;base64,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" alt="Portrait d’Alexandre Kubicki" width="112" height="112">
+      <h1>Alexandre Kubicki</h1>
+    </div>
+    <p class="role">
+      <span lang="fr">Professeur des Universités (CNU 91) · Kinésithérapeute</span>
+      <span lang="en">Full Professor of Rehabilitation Sciences · Physiotherapist</span>
+    </p>
+    <p class="thesis">
+      <span lang="fr">J’étudie comment les personnes âgées anticipent et contrôlent leur équilibre, et je construis des outils d’évaluation et de rééducation directement utilisables en clinique.</span>
+      <span lang="fr">Mes travaux portent aujourd’hui largement sur les interactions entre émotion et contrôle moteur, notamment le stress aigu et la peur de tomber, chez le patient âgé comme chez des sportifs engagés (parapente).</span>
+      <span lang="en">I study how older adults anticipate and control their balance, and I build assessment and rehabilitation tools that clinicians can use directly.</span>
+      <span lang="en">Much of my current work concerns the interactions between emotion and motor control, in particular acute stress and fear of falling, in older patients as well as in high-risk sports (paragliding).</span>
+    </p>
+    <div class="affil">
+      <span lang="fr">Directeur du Département des Sciences de la Rééducation, UFR Santé</span>
+      <span lang="en">Head of the Department of Rehabilitation Sciences, Faculty of Health</span>
+      <span>Université Marie et Louis Pasteur (Besançon)</span>
+      <span lang="fr">Laboratoire de Neurosciences Intégratives et Cliniques, INSERM UMR 1322 LINC</span>
+      <span lang="en">Laboratory of Integrative and Clinical Neurosciences, INSERM UMR 1322 LINC</span>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#collaborer"><span lang="fr">Travailler ensemble</span><span lang="en">Work together</span></a>
+      <a class="btn ghost" href="#publications"><span lang="fr">Voir les publications</span><span lang="en">See publications</span></a>
+    </div>
+  </div>
+  <figure class="plate" style="margin:0">
+    <canvas id="cop" width="600" height="600" aria-label="Tracés illustratifs : EMG et centre de pression lors d’ajustements posturaux anticipateurs, et ECG avec intervalles RR"></canvas>
+    <figcaption>
+      <span lang="fr">Tracés simulés, à visée d’illustration · élévation rapide du bras en station debout : activation posturale avant le mouvement, puis ECG et variabilité des intervalles RR</span>
+      <span lang="en">Simulated traces, for illustration · rapid arm raise while standing: postural activation before the movement, then ECG and RR-interval variability</span>
+    </figcaption>
+  </figure>
+</div>
+
+<div class="facts">
+  <div class="fact"><b>23</b><span lang="fr">articles en revues indexées</span><span lang="en">articles in indexed journals</span></div>
+  <div class="fact"><b>9 Q1 · 7 Q2</b><span lang="fr">classement des revues</span><span lang="en">journal quartiles</span></div>
+  <div class="fact"><b>3</b><span lang="fr">thèses (co)encadrées</span><span lang="en">PhD theses (co)supervised</span></div>
+  <div class="fact"><b>53</b><span lang="fr">mémoires dirigés</span><span lang="en">master’s dissertations supervised</span></div>
+  <div class="fact"><b>HDR 2017</b><span lang="fr">habilitation à diriger des recherches</span><span lang="en">habilitation to supervise research</span></div>
+</div>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="sec-head">
+    <h2><span lang="fr">Domaines d’expertise</span><span lang="en">Areas of expertise</span></h2>
+    <p>
+      <span lang="fr">Neurosciences du contrôle moteur sur le plan fondamental, rééducation gériatrique sur le plan appliqué. Quatre axes structurent mes travaux.</span>
+      <span lang="en">Motor control neuroscience on the fundamental side, geriatric rehabilitation on the applied side. My work follows four lines.</span>
+    </p>
+  </div>
+  <div class="axes">
+    <div class="axis">
+      <h3><span lang="fr">Prédiction motrice et équilibre</span><span lang="en">Motor prediction and balance</span></h3>
+      <p>
+        <span lang="fr">Les ajustements posturaux anticipateurs (APA) sont préservés chez le sujet âgé robuste mais altérés chez le sujet fragile. Ils restent entraînables, même chez des patients vulnérables, avec une rétention limitée des gains.</span>
+        <span lang="en">Anticipatory postural adjustments (APAs) are preserved in robust older adults but impaired in frail ones. They remain trainable, even in vulnerable patients, although the gains are poorly retained.</span>
+      </p>
+      <span class="ref">J Gerontol A 2012 · BMC Geriatr 2015 · Geriatrics 2021</span>
+    </div>
+    <div class="axis">
+      <h3><span lang="fr">Évaluation fonctionnelle en gériatrie</span><span lang="en">Functional assessment in geriatrics</span></h3>
+      <p>
+        <span lang="fr">Conception et validation du Frail’BESTest : cohérence interne, fiabilité inter-évaluateurs, validité concurrente, sensibilité au changement et valeur prédictive des chutes.</span>
+        <span lang="en">Design and validation of the Frail’BESTest: internal consistency, inter-rater reliability, concurrent validity, responsiveness and fall prediction.</span>
+      </p>
+      <span class="ref">Clin Interv Aging 2020 · Eur Rev Aging Phys Act 2021</span>
+    </div>
+    <div class="axis">
+      <h3><span lang="fr">Profils sensoriels et vestibulaire</span><span lang="en">Sensory profiles and vestibular function</span></h3>
+      <p>
+        <span lang="fr">Forte prévalence de la podo-dépendance chez le sujet âgé fragile, déficits vestibulaires sous-diagnostiqués, et liens avec les tests fonctionnels et le réflexe vestibulo-oculaire (vHIT).</span>
+        <span lang="en">High prevalence of foot-sole (podal) dependence in frail older adults, under-diagnosed vestibular deficits, and their links with functional tests and the vestibulo-ocular reflex (vHIT).</span>
+      </p>
+      <span class="ref">Neurosci Lett 2021 · Eur Rev Aging Phys Act 2025</span>
+    </div>
+    <div class="axis">
+      <h3><span lang="fr">Émotion et contrôle moteur</span><span lang="en">Emotion and motor control</span></h3>
+      <p>
+        <span lang="fr">Effets du stress aigu et de la peur de tomber sur la motricité, mesurés par la variabilité de la fréquence cardiaque, chez le patient âgé (syndrome de désadaptation psychomotrice) comme chez des sportifs engagés (parapente). Thérapie par exposition en réalité virtuelle.</span>
+        <span lang="en">How acute stress and fear of falling affect movement, measured with heart rate variability, in older patients (psychomotor disadaptation syndrome) and in high-risk sports (paragliding). Virtual-reality exposure therapy.</span>
+      </p>
+      <span class="ref">BMC Geriatr 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- COLLABORER -->
+<section id="collaborer">
+  <div class="sec-head">
+    <h2><span lang="fr">Collaborer</span><span lang="en">Work with me</span></h2>
+    <p>
+      <span lang="fr">Ce que je peux apporter selon votre profil.</span>
+      <span lang="en">What I can bring, depending on who you are.</span>
+    </p>
+  </div>
+  <div class="collab">
+    <div class="card">
+      <div class="who"><span lang="fr">Chercheurs &amp; cliniciens</span><span lang="en">Researchers &amp; clinicians</span></div>
+      <h3><span lang="fr">Projets de recherche</span><span lang="en">Research projects</span></h3>
+      <ul lang="fr">
+        <li>Conception d’études et méthodologie en rééducation</li>
+        <li>Analyse posturale et du mouvement (APA, stabilométrie, cinématique, EMG)</li>
+        <li>Validation d’outils cliniques d’évaluation</li>
+        <li>Analyse des interactions entre stress aigu, prise de décision et contrôle des mouvements</li>
+        <li>Co-encadrement doctoral, jurys de thèse, relecture d’articles</li>
+      </ul>
+      <ul lang="en">
+        <li>Study design and methodology in rehabilitation</li>
+        <li>Posture and movement analysis (APAs, posturography, kinematics, EMG)</li>
+        <li>Validation of clinical assessment tools</li>
+        <li>Analysis of interactions between acute stress, decision-making and movement control</li>
+        <li>PhD co-supervision, thesis committees, peer review</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="who"><span lang="fr">Industriels &amp; start-up</span><span lang="en">Industry &amp; start-ups</span></div>
+      <h3><span lang="fr">Dispositifs et innovation</span><span lang="en">Devices and innovation</span></h3>
+      <ul lang="fr">
+        <li>Évaluation de dispositifs d’équilibre, de mesure du mouvement ou de réalité virtuelle</li>
+        <li>Protocoles de validation (fiabilité, validité, sensibilité au changement)</li>
+        <li>Expertise d’usage auprès des personnes âgées et des kinésithérapeutes</li>
+        <li>Accès au terrain clinique gériatrique et hospitalier</li>
+      </ul>
+      <ul lang="en">
+        <li>Evaluation of balance, motion-sensing or virtual-reality devices</li>
+        <li>Validation protocols (reliability, validity, responsiveness)</li>
+        <li>User expertise with older adults and physiotherapists</li>
+        <li>Links with geriatric and hospital clinical settings</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="who"><span lang="fr">Organismes &amp; congrès</span><span lang="en">Organisations &amp; conferences</span></div>
+      <h3><span lang="fr">Formation et conférences</span><span lang="en">Training and talks</span></h3>
+      <ul lang="fr">
+        <li>Évaluation de l’équilibre et raisonnement clinique en gériatrie (Frail’BESTest)</li>
+        <li>Contrôle moteur, apprentissages moteurs, vestibulaire</li>
+        <li>Conférences grand public : activité physique, vieillissement, santé environnementale</li>
+      </ul>
+      <ul lang="en">
+        <li>Balance assessment and clinical reasoning in geriatrics (Frail’BESTest)</li>
+        <li>Motor control, motor learning, vestibular rehabilitation</li>
+        <li>Public talks: physical activity, ageing, environmental health</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="who"><span lang="fr">Établissements</span><span lang="en">Institutions</span></div>
+      <h3><span lang="fr">Formations en santé</span><span lang="en">Health professions education</span></h3>
+      <ul lang="fr">
+        <li>Universitarisation des formations en rééducation</li>
+        <li>Ingénierie pédagogique par compétences, mutualisations interprofessionnelles</li>
+        <li>Formation par et pour la recherche</li>
+      </ul>
+      <ul lang="en">
+        <li>Integrating rehabilitation programmes into the university</li>
+        <li>Competency-based curriculum design, interprofessional teaching</li>
+        <li>Research training within professional programmes</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- METHODES -->
+<section id="methodes">
+  <div class="sec-head">
+    <h2><span lang="fr">Outils et méthodes</span><span lang="en">Tools and methods</span></h2>
+    <p>
+      <span lang="fr">Les mesures et tests que j’utilise en recherche et en clinique.</span>
+      <span lang="en">Measures and tests I use in research and clinical practice.</span>
+    </p>
+  </div>
+  <div class="methods">
+    <span class="chip">Frail’BESTest</span>
+    <span class="chip">MCTSIB</span>
+    <span class="chip">Timed Up and Go</span>
+    <span class="chip"><span lang="fr">Vitesse de marche</span><span lang="en">Gait speed</span></span>
+    <span class="chip"><span lang="fr">Plateforme de force / stabilométrie</span><span lang="en">Force platform / posturography</span></span>
+    <span class="chip"><span lang="fr">Analyse cinématique 3D</span><span lang="en">3D kinematic analysis</span></span>
+    <span class="chip"><span lang="fr">EMG de surface</span><span lang="en">Surface EMG</span></span>
+    <span class="chip">vHIT</span>
+    <span class="chip"><span lang="fr">Variabilité de la fréquence cardiaque</span><span lang="en">Heart rate variability</span></span>
+    <span class="chip"><span lang="fr">Réalité virtuelle</span><span lang="en">Virtual reality</span></span>
+    <span class="chip"><span lang="fr">Statistiques</span><span lang="en">Statistics</span></span>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="sec-head">
+    <h2><span lang="fr">Projets en cours</span><span lang="en">Current projects</span></h2>
+    <p>
+      <span lang="fr">Travaux menés avec l’INSERM UMR 1322 LINC et l’Hôpital Nord Franche-Comté.</span>
+      <span lang="en">Work carried out with INSERM UMR 1322 LINC and Hôpital Nord Franche-Comté.</span>
+    </p>
+  </div>
+  <div class="projects">
+    <div class="proj">
+      <div class="tag">TERV-SDPM</div>
+      <div>
+        <h3><span lang="fr">Réalité virtuelle contre la peur du vide</span><span lang="en">Virtual reality against fear of falling forward</span></h3>
+        <p>
+          <span lang="fr">Thérapie par exposition en réalité virtuelle pour des patients atteints du syndrome de désadaptation psychomotrice, incapables de se tenir debout à cause d’une peur intense du vide antérieur. L’étude a reçu l’avis favorable d’un Comité de Protection des Personnes.</span>
+          <span lang="en">Virtual-reality exposure therapy for patients with psychomotor disadaptation syndrome who cannot stand because of an intense fear of the space in front of them. The study has been approved by a French research ethics committee (CPP).</span>
+        </p>
+      </div>
+    </div>
+    <div class="proj">
+      <div class="tag">Fear Project</div>
+      <div>
+        <h3><span lang="fr">Un marqueur objectif de la peur de tomber</span><span lang="en">An objective marker of fear of falling</span></h3>
+        <p>
+          <span lang="fr">Projet global sur la peur de tomber comme modèle d’interaction entre émotion, décision et motricité, mené en collaboration avec Marie-Caroline Play. La variabilité de la fréquence cardiaque peut-elle mesurer cette peur et guider les séances de rééducation ? Protocole publié dans BMC Geriatrics (2026).</span>
+          <span lang="en">An overarching project on fear of falling as a model of how emotion, decision and movement interact, run in collaboration with Marie-Caroline Play. Can heart rate variability measure this fear and guide rehabilitation sessions? Protocol published in BMC Geriatrics (2026).</span>
+        </p>
+      </div>
+    </div>
+    <div class="proj">
+      <div class="tag">Premo Senso</div>
+      <div>
+        <h3><span lang="fr">Profils sensoriels et prédiction motrice en gériatrie</span><span lang="en">Sensory profiles and motor prediction in geriatrics</span></h3>
+        <p>
+          <span lang="fr">Thèse de Marine Brika (en cours) : caractériser les profils sensoriels des personnes âgées, dont la podo-dépendance, et leur lien avec la qualité des ajustements posturaux anticipateurs.</span>
+          <span lang="en">PhD project of Marine Brika (ongoing): characterising the sensory profiles of older adults, including foot-sole dependence, and their link with the quality of anticipatory postural adjustments.</span>
+        </p>
+      </div>
+    </div>
+    <div class="proj">
+      <div class="tag">VESTIBAPAGE</div>
+      <div>
+        <h3><span lang="fr">Vieillissement vestibulaire et équilibre</span><span lang="en">Vestibular ageing and balance</span></h3>
+        <p>
+          <span lang="fr">Thèse d’Adrien Juranville (contrat doctoral) : liens entre profil sensoriel, tests fonctionnels et performance vestibulaire haute fréquence (vHIT), chez le sujet âgé sain puis chez des patients présentant des troubles de l’équilibre.</span>
+          <span lang="en">PhD project of Adrien Juranville (doctoral contract): links between sensory profile, functional tests and high-frequency vestibular performance (vHIT), first in healthy older adults, then in patients with balance disorders.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="sec-head">
+    <h2>Publications</h2>
+    <p>
+      <span lang="fr">Liste complète, filtrable. Chaque titre renvoie vers l’article ou une recherche PubMed.</span>
+      <span lang="en">Full list, filterable. Each title links to the article or a PubMed search.</span>
+    </p>
+  </div>
+  <div class="pub-tools">
+    <input id="pub-search" type="search" placeholder="Rechercher : titre, revue, co-auteur…" aria-label="Rechercher dans les publications">
+    <button type="button" class="filter" id="f-all" data-f="all" aria-pressed="true"><span lang="fr">Tout</span><span lang="en">All</span></button>
+    <button type="button" class="filter" id="f-idx" data-f="idx" aria-pressed="false"><span lang="fr">Revues indexées</span><span lang="en">Indexed journals</span></button>
+    <button type="button" class="filter" id="f-peer" data-f="peer" aria-pressed="false"><span lang="fr">Comité de lecture (FR)</span><span lang="en">Peer-reviewed (FR)</span></button>
+    <button type="button" class="filter" id="f-pro" data-f="pro" aria-pressed="false"><span lang="fr">Professionnelles</span><span lang="en">Professional</span></button>
+  </div>
+  <ul class="pubs" id="pubs"></ul>
+  <p class="pub-count" id="pub-count"></p>
+</section>
+
+<!-- CONFERENCES -->
+<section id="conferences">
+  <div class="sec-head">
+    <h2><span lang="fr">Conférences invitées</span><span lang="en">Invited talks</span></h2>
+    <p>
+      <span lang="fr">Une sélection récente, en congrès professionnels et auprès du grand public.</span>
+      <span lang="en">A recent selection, at professional conferences and for the general public.</span>
+    </p>
+  </div>
+  <div class="talks">
+    <div class="talk"><span class="yr">2025</span><div>La Thérapie par Exposition à la Réalité Virtuelle pour traiter la peur de tomber dans le syndrome de désadaptation psychomotrice<small>1ères Assises de la prévention, Dijon</small></div></div>
+    <div class="talk"><span class="yr">2025</span><div>Pédaler pour une seule santé : les co-bénéfices de l’activité physique dans le concept One Health<small>Bar des Sciences, Montbéliard</small></div></div>
+    <div class="talk"><span class="yr">2023</span><div>Anticipations posturales et fragilité<small>Journées Francophones de la Kinésithérapie, Rennes</small></div></div>
+    <div class="talk"><span class="yr">2020</span><div>Contrôle moteur anticipatif et fragilité<small>Congrès du CETAPS (visioconférence)</small></div></div>
+    <div class="talk"><span class="yr">2019</span><div>Age, frailty and postural anticipations: evaluation and rehabilitation<small>World Congress on Neurology and Brain Disorders, Paris</small></div></div>
+    <div class="talk"><span class="yr">2019</span><div>Les drapeaux rouges en rééducation gériatrique<small>Collège de la Masso-Kinésithérapie, Paris</small></div></div>
+    <div class="talk"><span class="yr">2019</span><div>Triage du patient âgé instable<small>Société internationale de rééducation vestibulaire, JFK Montpellier</small></div></div>
+    <div class="talk"><span class="yr">2017</span><div>Anticipatory postural adjustments in clinical practice<small>IFOS 2017, Paris</small></div></div>
+  </div>
+</section>
+
+<!-- ENSEIGNEMENT -->
+<section id="enseignement">
+  <div class="sec-head">
+    <h2><span lang="fr">Enseignement</span><span lang="en">Teaching</span></h2>
+    <p>
+      <span lang="fr">Plus de 192 h éq. TD par an en kinésithérapie, ergothérapie, psychomotricité, STAPS et PASS/LAS.</span>
+      <span lang="en">Over 192 teaching hours a year across physiotherapy, occupational therapy, psychomotor therapy, sport sciences and first-year health studies.</span>
+    </p>
+  </div>
+  <div class="methods">
+    <span class="chip"><span lang="fr">Neurophysiologie du mouvement</span><span lang="en">Movement neurophysiology</span></span>
+    <span class="chip"><span lang="fr">Apprentissages moteurs</span><span lang="en">Motor learning</span></span>
+    <span class="chip"><span lang="fr">Évaluation motrice en gériatrie</span><span lang="en">Motor assessment in geriatrics</span></span>
+    <span class="chip"><span lang="fr">Posturographie</span><span lang="en">Posturography</span></span>
+    <span class="chip"><span lang="fr">Physiopathologie vestibulaire</span><span lang="en">Vestibular pathophysiology</span></span>
+    <span class="chip">SDPM</span>
+    <span class="chip"><span lang="fr">Méthodes de recherche</span><span lang="en">Research methods</span></span>
+    <span class="chip"><span lang="fr">Statistiques</span><span lang="en">Statistics</span></span>
+    <span class="chip"><span lang="fr">Lecture critique d’articles</span><span lang="en">Critical appraisal</span></span>
+    <span class="chip"><span lang="fr">Santé environnementale</span><span lang="en">Environmental health</span></span>
+    <span class="chip"><span lang="fr">Kinésithérapie du grimpeur</span><span lang="en">Physiotherapy for climbers</span></span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact">
+    <div>
+      <h2><span lang="fr">Prendre contact</span><span lang="en">Get in touch</span></h2>
+      <p>
+        <span lang="fr">Pour un projet de recherche, l’évaluation d’un dispositif, une formation ou une conférence, écrivez-moi en précisant votre structure et votre besoin.</span>
+        <span lang="en">For a research project, a device evaluation, training or a talk, write to me with your organisation and what you need.</span>
+      </p>
+    </div>
+    <div class="clist">
+      <div class="crow" id="row-email" hidden>
+        <span class="k">E-mail</span>
+        <span class="v"><span id="email-text"></span><button type="button" class="copy" id="copy-email"><span lang="fr">Copier</span><span lang="en">Copy</span></button></span>
+      </div>
+      <div class="crow">
+        <span class="k">ORCID</span>
+        <span class="v"><a href="https://orcid.org/0000-0002-3083-1564" target="_blank" rel="noopener">0000-0002-3083-1564</a></span>
+      </div>
+      <div class="crow">
+        <span class="k">Google Scholar</span>
+        <span class="v"><a href="https://scholar.google.fr/citations?user=m1Q3maEAAAAJ" target="_blank" rel="noopener"><span lang="fr">Voir le profil</span><span lang="en">View profile</span></a></span>
+      </div>
+      <div class="crow">
+        <span class="k"><span lang="fr">Rattachement</span><span lang="en">Affiliation</span></span>
+        <span class="v">UFR Santé, Université Marie et Louis Pasteur · INSERM UMR 1322 LINC, Besançon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Alexandre Kubicki</span>
+  <span lang="fr">Mentions légales. Éditeur et directeur de la publication : Alexandre Kubicki, alexandre.kubicki@univ-fcomte.fr. Hébergeur : GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Ce site ne dépose aucun cookie et ne collecte aucune donnée personnelle.</span>
+  <span lang="en">Legal notice. Publisher: Alexandre Kubicki, alexandre.kubicki@univ-fcomte.fr. Host: GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. This site sets no cookies and collects no personal data.</span>
+</footer>
+
+</div>
+</div>
+
+<script>
+(function(){
+  // ---- Contact e-mail: fill in to display it ----
+  var EMAIL = "alexandre.kubicki@univ-fcomte.fr";
+
+  var site = document.getElementById('site');
+  var search = document.getElementById('pub-search');
+  var PH = {fr:"Rechercher : titre, revue, co-auteur…", en:"Search: title, journal, co-author…"};
+
+  function setLang(l){
+    site.setAttribute('data-lang', l);
+    document.documentElement.lang = l;
+    document.querySelectorAll('.langs button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.set === l ? 'true':'false'); });
+    search.placeholder = PH[l];
+    render();
+    if (window.__redraw) window.__redraw();
+    try{ localStorage.setItem('ak-lang', l); }catch(e){}
+  }
+  document.querySelectorAll('.langs button').forEach(function(b){ b.addEventListener('click', function(){ setLang(b.dataset.set); }); });
+
+  if (EMAIL){
+    document.getElementById('row-email').hidden = false;
+    document.getElementById('email-text').textContent = EMAIL;
+    document.getElementById('copy-email').addEventListener('click', function(){
+      var btn = this;
+      function done(){ btn.dataset.old = btn.dataset.old || btn.innerHTML; btn.textContent = site.dataset.lang === 'en' ? 'Copied' : 'Copié'; setTimeout(function(){ btn.innerHTML = btn.dataset.old; }, 1600); }
+      try{
+        navigator.clipboard.writeText(EMAIL).then(done, function(){ selectEmail(); });
+      }catch(e){ selectEmail(); }
+    });
+  }
+  function selectEmail(){
+    var r = document.createRange(); r.selectNodeContents(document.getElementById('email-text'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+
+  // ---- Publications (source: présentation analytique 2026 + Crossref) ----
+  var P = [
+    ["idx",2026,"Play MC, Juranville A, Poirson B, Kubicki A","Heart rate variability to objectively measure fear of falling in post fall patients: a protocol study","BMC Geriatrics","26:436","10.1186/s12877-026-07175-6"],
+    ["idx",2025,"Brika M, Mourey F, Kubicki A","Sensory profiles in older adults with orthopedic conditions during quiet stance: a cross-sectional study","European Review of Aging and Physical Activity","22(1):3",""],
+    ["idx",2023,"Slekovec C, Lepiller Q, Anxionnat R, … Kubicki A, … Moulin T, Bouiller K, Nerich V","French healthcare students and antibiotics: are they ready to promote their appropriate use?","JAC-Antimicrobial Resistance","6(1):dlad147",""],
+    ["idx",2023,"Druart L, Bailly-Basin E, Dolgopoloff M, Rossettini G, Blease C, Locher C, Kubicki A, Pinsault N","Using contextual factors to elicit placebo and nocebo effects: an online survey of healthcare providers' practice","PLoS One","18(9):e0291079",""],
+    ["idx",2021,"Bourrelier J, Fautrelle L, Haratyk E, Manckoundia P, Mérienne F, Mourey F, Kubicki A","Enhancement of anticipatory postural adjustments by virtual reality in older adults with cognitive and motor deficits: a randomised trial","Geriatrics (Basel)","6(3):72",""],
+    ["idx",2021,"Callegari B, Kubicki A, Saunier G, Duarte MB, Almeida GCDS, Alves BMO, Amorim CF","Postural adjustments and kinematic index finger features in frail older adults under different equilibrium constraints","Healthcare (Basel)","9(8):921",""],
+    ["idx",2021,"Brika M, Mourey F, Kubicki A","Sensory reweighting in frail aged adults: are the balance deficiencies mainly compensated by visual or podal dependences?","Neuroscience Letters","747:135670",""],
+    ["idx",2021,"Kubicki A, Laroche D, Coquisart L, Basile G, Brika M, Mourey F","The Frail'BESTest. An adaptation of the BESTest for older adults. Concurrent validity, responsiveness, validity for fall prediction and detection of slower walkers","European Review of Aging and Physical Activity","18(1):22",""],
+    ["idx",2020,"Brika M, Bossu M, Fautrelle L, Mourey F, Kubicki A","Geriatric rehabilitation and COVID-19: a case report","SN Comprehensive Clinical Medicine","1–9",""],
+    ["idx",2020,"Kubicki A, Brika M, Basile G, Coquisart L, Laroche D, Mourey F","An adaptation of the “Balance Evaluation System Test” for frail older adults. Description, internal consistency and inter-rater reliability","Clinical Interventions in Aging","15:1249–1262",""],
+    ["idx",2017,"Hassani A, Kubicki A, Mourey F, Yang F","Advanced 3D movement analysis algorithms for robust functional capacity assessment","Applied Clinical Informatics","8(2):454–469",""],
+    ["idx",2017,"Fautrelle L, Kubicki A, Babault N, Paizis C","Immediate effects of shoes inducing ankle-destabilization around Henke's axis during challenging walking gaits: gait kinematics and peroneal muscles activities","Gait & Posture","54:259–264",""],
+    ["idx",2016,"Kubicki A, Fautrelle L, Bourrelier J, Rouaud O, Mourey F","The early indicators of functional decrease in mild cognitive impairment","Frontiers in Aging Neuroscience","8:193",""],
+    ["idx",2015,"Bourrelier J, Kubicki A, Rouaud O, Crognier L, Mourey F","Mental rotation as an indicator of motor representation in patients with mild cognitive impairment","Frontiers in Aging Neuroscience","7:238",""],
+    ["idx",2015,"Kubicki A, Mourey F, Bonnetblanc F","Balance control in aging: improvements in anticipatory postural adjustments and updating of internal models","BMC Geriatrics","15:162",""],
+    ["idx",2015,"Laroche D, Kubicki A, Stapley PJ, Gremeaux V, Mazalovic K, Maillefert JF, Ornetti P","Test-retest reliability and responsiveness of centre of pressure measurements in patients with hip osteoarthritis","Osteoarthritis and Cartilage","23(8):1357–1366",""],
+    ["idx",2015,"Hassani A, Kubicki A, Brost V, Mourey F, Yang F","Kinematic analysis of sit to stand and back to sit transfers: how to spot the motor frailty","Clinical Interventions in Aging","10:505–513",""],
+    ["idx",2014,"Kubicki A","Functional assessment in older adults: should we use Timed Up and Go or gait speed test?","Neuroscience Letters","577:89–94","10.1016/j.neulet.2014.06.014"],
+    ["idx",2014,"Kubicki A, Bonnetblanc F, Petrement G, Mourey F","Motor-prediction improvements after virtual rehabilitation in geriatrics: frail patients reveal different learning curves for movement and postural control","Neurophysiologie Clinique","44(1):109–118",""],
+    ["idx",2014,"Manckoundia P, Taroux M, Kubicki A, Mourey F","Impact of ambulatory physiotherapy on motor abilities of elderly subjects with Alzheimer's disease","Geriatrics & Gerontology International","14(1):167–175",""],
+    ["idx",2012,"Kubicki A, Bonnetblanc F, Petrement G, Ballay Y, Mourey F","Delayed postural control during self-generated perturbations in the frail older adults","Clinical Interventions in Aging","7:65–75",""],
+    ["idx",2012,"Kubicki A, Petrement G, Bonnetblanc F, Ballay Y, Mourey F","Practice-related improvements in postural control during rapid arm movement in older adults: a preliminary study","Journals of Gerontology, Series A","67(2):196–203",""],
+    ["idx",2010,"Personnier P, Kubicki A, Laroche D, Papaxanthis C","Temporal features of imagined locomotion in normal aging","Neuroscience Letters","476(3):146–149",""],
+
+    ["peer",2024,"Brocard C, Kubicki A, Perrault K","Rééducation périnéale en post-partum : les attentes des femmes et leurs orientations dans leur parcours de soin","Kinésithérapie, la Revue","in press",""],
+    ["peer",2020,"Bossu M, Brika M, Mourey F, Kubicki A","Bilan kinésithérapique de Mr P., patient âgé fragile de 93 ans présentant un syndrome de détresse respiratoire aiguë suite à une infection au COVID-19","Kinésithérapie, la Revue","20(223):19–25",""],
+    ["peer",2016,"Bourrelier J, Hassani A, Mourey F, Yang F, Kubicki A","Back to sit transfer in aging: motor planning impairments and functional abilities in frail aged adults","Movement & Sport Sciences – Science & Motricité","93",""],
+    ["peer",2015,"Brika M, Mourey F, Kubicki A","Imagerie motrice en rééducation gériatrique","Kinésithérapie, la Revue","15(158):20",""],
+    ["peer",2014,"Kubicki A, Petrement G, Brost V, Yang F","Low-cost motion analysis device: accuracy of velocity measurements during arm movements in comparison with laboratory system. A pilot study","International Journal of Neurorehabilitation","1:2",""],
+    ["peer",2014,"Kubicki A, Taroux M, Manckoundia P, Mourey F","Kinésithérapie gériatrique à domicile : effets sur les capacités motrices et cognitives chez des patients présentant une maladie d'Alzheimer","Kinésithérapie, la Revue","14(149):42–49",""],
+    ["peer",2012,"Kubicki A, Mourey F","EquiMoG : proposition d'un outil pour l'évaluation de la fonction d'équilibration en rééducation gériatrique","Kinésithérapie, la Revue","132:23–28",""],
+
+    ["pro",2023,"Kubicki A, Brika M, Bazin S, Mourey F","Frail'BESTest (EquiMoG) : évaluation systémique de la motricité du sujet âgé. Quelle utilisation et quelle diffusion en 2023 ?","EMC Kinésithérapie-Médecine physique-Réadaptation","in press",""],
+    ["pro",2023,"Kubicki A","Physical therapists have a main role in Environmental Health","European Rehabilitation Journal","3(1)","10.52057/erj.v3i1.45"],
+    ["pro",2020,"Kubicki A","L'universitarisation, les enseignants-chercheurs, quels statuts pour demain","Kinescope, la lettre du CNKS","octobre 2020",""],
+    ["pro",2017,"Kubicki A","Enjeux et perspectives de l'accès direct en masso-kinésithérapie","Kinésithérapie, la Revue","17(185):1–2",""],
+    ["pro",2015,"Kubicki A, Mourey F","Rééducation gériatrique : une approche systémique","EMC Rééducation","26-590-A-10",""],
+    ["pro",2014,"Kubicki A, Mourey F","Évaluation de la fonction d'équilibration en gériatrie : comment évaluer cliniquement les activités posturales anticipées","Kinésithérapie Scientifique","02:0551",""],
+    ["pro",2012,"Mourey F, Kubicki A","Évaluation et rééducation des automatismes posturaux chez les personnes âgées","Kinésithérapie Scientifique","09:52–54",""]
+  ];
+
+  var filter = 'all';
+  var list = document.getElementById('pubs');
+  var count = document.getElementById('pub-count');
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function norm(s){ return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
+
+  function render(){
+    var en = site.dataset.lang === 'en';
+    var q = norm(search.value.trim());
+    var rows = P.filter(function(p){
+      if (filter !== 'all' && p[0] !== filter) return false;
+      if (!q) return true;
+      return norm(p.slice(2).join(' ')).indexOf(q) !== -1;
+    });
+    list.innerHTML = rows.map(function(p){
+      var url = p[6] ? 'https://doi.org/' + p[6] : 'https://pubmed.ncbi.nlm.nih.gov/?term=' + encodeURIComponent(p[3]);
+      var authors = esc(p[2]).replace(/Kubicki A/g, '<b>Kubicki A</b>');
+      var vol = p[5] === 'in press' ? (en ? 'in press' : 'sous presse') : esc(p[5]);
+      var lk = p[6] ? 'DOI' : (p[0] === 'idx' ? 'PubMed' : '');
+      var title = lk ? '<a href="'+url+'" target="_blank" rel="noopener">'+esc(p[3])+'</a>' : esc(p[3]);
+      return '<li><span class="yr">'+p[1]+'</span><div><div class="t">'+title+'</div><div class="a">'+authors+'</div><div class="j"><i>'+esc(p[4])+'</i>, '+vol+(lk?'<span class="lk">'+lk+'</span>':'')+'</div></div></li>';
+    }).join('');
+    count.textContent = rows.length + (en ? ' of ' : ' sur ') + P.length + ' publications';
+  }
+
+  document.querySelectorAll('.filter').forEach(function(b){
+    b.addEventListener('click', function(){
+      filter = b.dataset.f;
+      document.querySelectorAll('.filter').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true':'false'); });
+      render();
+    });
+  });
+  search.addEventListener('input', render);
+
+  var saved = null;
+  try{ saved = localStorage.getItem('ak-lang'); }catch(e){}
+  setLang(saved === 'en' ? 'en' : 'fr');
+
+  // ---- Illustrative signals: APA (EMG + CoP) and ECG / RR intervals (simulated) ----
+  var cv = document.getElementById('cop'), ctx = cv.getContext('2d');
+  function col(v){ return getComputedStyle(site).getPropertyValue(v).trim(); }
+  var seed = 11; function rnd(){ seed = (seed*16807) % 2147483647; return seed/2147483647; }
+  function gauss(){ return (rnd()+rnd()+rnd()+rnd()-2); }
+  var W = 600, H = 640, L = 130, R = 584;
+  var T0 = -300, T1 = 500, N = 800;
+  function tx(t){ return L + (t - T0) / (T1 - T0) * (R - L); }
+  function env(t, on, rise, peak, fall){ if (t < on) return 0; var d = t - on; return peak * (1 - Math.exp(-d/rise)) * Math.exp(-Math.max(0, d-160)/fall); }
+  var delt = [], ham = [], cop = [];
+  for (var i=0;i<N;i++){
+    var t = T0 + i*(T1-T0)/N;
+    delt.push(gauss()*(0.05 + env(t, 0, 25, 1.0, 180)));
+    ham.push(gauss()*(0.05 + env(t, -55, 20, 0.8, 140)));
+    var c = -(1/(1+Math.exp(-(t+40)/18))) * Math.exp(-Math.pow(Math.max(0,t-50),2)/(2*120*120));
+    cop.push(c + gauss()*0.012);
+  }
+  // ECG: 4 s, beats with variable RR
+  var RR = [812, 764, 846, 788, 731, 802];
+  var beats = [], acc = 260; beats.push(acc);
+  for (var b=0;b<RR.length;b++){ acc += RR[b]; beats.push(acc); }
+  var E0 = 0, E1 = 4300, EN = 1400, ecg = [];
+  function g(t, m, s, a){ return a*Math.exp(-((t-m)*(t-m))/(2*s*s)); }
+  for (var j=0;j<EN;j++){
+    var te = E0 + j*(E1-E0)/EN, v = 0;
+    beats.forEach(function(bt){ v += g(te, bt-160, 22, 0.12) + g(te, bt-18, 6, -0.12) + g(te, bt, 7, 1) + g(te, bt+20, 8, -0.22) + g(te, bt+250, 45, 0.25); });
+    ecg.push(v + gauss()*0.008);
+  }
+  function ex(t){ return L + (t - E0)/(E1 - E0)*(R - L); }
+
+  var TXT = {
+    fr:{a:'Ajustements posturaux anticipateurs', emg1:'EMG deltoïde ant.', emg2:'EMG ischio-jambiers', cop:'CP antéro-post.', t0:'T0 mouvement', apa:'APA', ms:'temps (ms)', b:'ECG · intervalles RR (ms)', s:'temps (s)'},
+    en:{a:'Anticipatory postural adjustments', emg1:'EMG anterior deltoid', emg2:'EMG hamstrings', cop:'CoP antero-post.', t0:'T0 movement', apa:'APA', ms:'time (ms)', b:'ECG · RR intervals (ms)', s:'time (s)'}
+  };
+
+  function line(arr, x0, n, yc, scale, color, lw){
+    ctx.strokeStyle = color; ctx.lineWidth = lw; ctx.beginPath();
+    for (var k=0;k<n;k++){ var X = x0(k), Y = yc - arr[k]*scale; if (k===0) ctx.moveTo(X,Y); else ctx.lineTo(X,Y); }
+    ctx.stroke();
+  }
+  var prog = 1;
+  function frame(){
+    var T = TXT[site.dataset.lang === 'en' ? 'en' : 'fr'];
+    var grid = col('--grid'), muted = col('--muted'), ink = col('--ink'), trace = col('--trace'), accent = col('--accent'), ecgc = col('--ecg'), surf = col('--surface'), soft = col('--accent-soft');
+    ctx.fillStyle = surf; ctx.fillRect(0,0,W,H);
+    ctx.font = '500 15px "IBM Plex Mono", monospace'; ctx.fillStyle = ink; ctx.textAlign = 'left';
+    ctx.fillText(T.a, 16, 26);
+    // APA window + T0
+    ctx.fillStyle = soft; ctx.fillRect(tx(-100), 44, tx(50)-tx(-100), 330);
+    ctx.strokeStyle = muted; ctx.setLineDash([4,4]); ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(tx(0), 44); ctx.lineTo(tx(0), 374); ctx.stroke(); ctx.setLineDash([]);
+    ctx.font = '13px "IBM Plex Mono", monospace'; ctx.fillStyle = accent; ctx.textAlign = 'center';
+    ctx.fillText(T.apa, (tx(-100)+tx(50))/2, 368);
+    ctx.fillStyle = muted; ctx.textAlign = 'left'; ctx.fillText(T.t0, tx(0)+6, 60);
+    // tracks
+    var rows = [[T.emg1, delt, 115, 24, accent],[T.emg2, ham, 215, 24, accent],[T.cop, cop, 300, 55, trace]];
+    var nA = Math.floor(N*prog);
+    rows.forEach(function(r){
+      ctx.strokeStyle = grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(L, r[2]); ctx.lineTo(R, r[2]); ctx.stroke();
+      ctx.fillStyle = muted; ctx.textAlign = 'right'; ctx.font = '12px "IBM Plex Mono", monospace';
+      var parts = r[0].split(' '); ctx.fillText(parts[0], L-10, r[2]-4); ctx.fillText(parts.slice(1).join(' '), L-10, r[2]+12);
+      line(r[1], function(k){ return tx(T0 + k*(T1-T0)/N); }, nA, r[2], r[3], r[4], r[1] === cop ? 2 : 1);
+    });
+    // time axis A
+    ctx.fillStyle = muted; ctx.textAlign = 'center'; ctx.font = '12px "IBM Plex Mono", monospace';
+    [-200, 0, 200, 400].forEach(function(v){ ctx.fillText(v, tx(v), 394); ctx.strokeStyle = grid; ctx.beginPath(); ctx.moveTo(tx(v), 374); ctx.lineTo(tx(v), 380); ctx.stroke(); });
+    ctx.textAlign = 'right'; ctx.fillText(T.ms, R, 412);
+    // ECG panel
+    ctx.strokeStyle = grid; ctx.beginPath(); ctx.moveTo(16, 432); ctx.lineTo(R, 432); ctx.stroke();
+    ctx.font = '500 15px "IBM Plex Mono", monospace'; ctx.fillStyle = ink; ctx.textAlign = 'left';
+    ctx.fillText(T.b, 16, 462);
+    var yE = 560, nE = Math.floor(EN*prog);
+    line(ecg, function(k){ return ex(E0 + k*(E1-E0)/EN); }, nE, yE, 58, ecgc, 1.4);
+    ctx.font = '12px "IBM Plex Mono", monospace'; ctx.textAlign = 'center';
+    for (var q=0;q<RR.length;q++){
+      var a = beats[q], z = beats[q+1];
+      if (z > E0 + (E1-E0)*prog) break;
+      var y = 490;
+      ctx.strokeStyle = muted; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(ex(a), y); ctx.lineTo(ex(z), y); ctx.moveTo(ex(a), y-4); ctx.lineTo(ex(a), y+4); ctx.moveTo(ex(z), y-4); ctx.lineTo(ex(z), y+4); ctx.stroke();
+      ctx.fillStyle = ink; ctx.fillText(RR[q], (ex(a)+ex(z))/2, y-7);
+    }
+    ctx.fillStyle = muted;
+    [0,1,2,3,4].forEach(function(s){ ctx.fillText(s, ex(s*1000), 614); });
+    ctx.textAlign = 'right'; ctx.fillText(T.s, R, 632);
+  }
+  window.__redraw = frame;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce){ prog = 1; frame(); }
+  else {
+    prog = 0.35; frame();
+    (function step(){ prog = Math.min(1, prog + 0.012); frame(); if (prog < 1) requestAnimationFrame(step); })();
+  }
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  if (mq.addEventListener) mq.addEventListener('change', frame);
+  new MutationObserver(frame).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
+})();
+</script>
+
+</body>
+</html>
